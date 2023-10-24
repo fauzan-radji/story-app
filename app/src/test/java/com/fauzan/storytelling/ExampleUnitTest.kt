@@ -1,4 +1,4 @@
-package com.fauzan.storyapp
+package com.fauzan.storytelling
 
 import org.junit.Test
 
