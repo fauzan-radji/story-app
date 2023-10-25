@@ -5,4 +5,7 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_must_be_at_least_8_characters">Password must be at least 8 characters</string>
+    <string name="email_is_invalid">Email is invalid</string>
 </resources>
