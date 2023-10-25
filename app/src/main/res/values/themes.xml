@@ -22,7 +22,8 @@
         <item name="strokeColor">@color/blue</item>
         <item name="strokeWidth">2dp</item>
         <item name="android:textColor">@color/blue</item>
-        <item name="android:backgroundTint">#0000</item>
+        <item name="android:backgroundTint">?android:colorBackground</item>
+        <item name="rippleColor">@color/light_blue</item>
     </style>
 
     <style name="Input">
