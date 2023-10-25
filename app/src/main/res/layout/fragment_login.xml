@@ -7,8 +7,17 @@
     tools:context=".ui.login.LoginFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/iv_logo"
@@ -28,14 +37,18 @@
             style="@style/Input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             android:hint="@string/email"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_logo">
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+            app:startIconDrawable="@drawable/ic_email">
 
             <com.fauzan.storytelling.components.EmailEditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -48,11 +61,13 @@
             android:layout_marginTop="0dp"
             android:hint="@string/password"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:layout_constraintEnd_toEndOf="@id/til_email"
+            app:layout_constraintStart_toStartOf="@id/til_email"
             app:layout_constraintTop_toBottomOf="@+id/til_email">
 
             <com.fauzan.storytelling.components.PasswordEditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -64,8 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/til_email"
+            app:layout_constraintStart_toStartOf="@id/til_email"
             app:layout_constraintTop_toBottomOf="@+id/til_password" />
 
         <Button
@@ -73,10 +88,12 @@
             style="@style/Button.Outlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/til_email"
+            app:layout_constraintStart_toStartOf="@id/til_email"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

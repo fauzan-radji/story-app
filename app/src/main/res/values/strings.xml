@@ -8,4 +8,14 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="password_must_be_at_least_8_characters">Password must be at least 8 characters</string>
     <string name="email_is_invalid">Email is invalid</string>
+    <string name="email_cannot_be_empty">Email cannot be empty</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">This is Home Fragment</string>
+    <string name="session_expired_please_login_again">Session expired, please login again</string>
+    <string name="success">Success</string>
+    <string name="name_cannot_be_empty">Name cannot be empty</string>
+    <string name="confirm_password_cannot_be_empty">Confirm Password cannot be empty</string>
+    <string name="password_and_confirm_password_must_be_same">Password and confirm password must be same</string>
 </resources>
