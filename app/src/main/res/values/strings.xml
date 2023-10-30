@@ -11,11 +11,15 @@
     <string name="email_cannot_be_empty">Email cannot be empty</string>
     <string name="password_cannot_be_empty">Password cannot be empty</string>
     <string name="something_went_wrong">Something went wrong</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">This is Home Fragment</string>
     <string name="session_expired_please_login_again">Session expired, please login again</string>
     <string name="success">Success</string>
     <string name="name_cannot_be_empty">Name cannot be empty</string>
     <string name="confirm_password_cannot_be_empty">Confirm Password cannot be empty</string>
     <string name="password_and_confirm_password_must_be_same">Password and confirm password must be same</string>
+    <string name="description">This is a short description</string>
+    <string name="logout">Logout</string>
+    <string name="language">Language</string>
+    <string name="detail_story">Detail Story</string>
+    <string name="add_new_story">Add New Story</string>
+    <string name="thumbnail">Thumbnail</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.asLiveData
 import com.fauzan.storytelling.R
 import com.fauzan.storytelling.data.datastore.UserPreference
+import com.fauzan.storytelling.data.model.StoryModel
 import com.fauzan.storytelling.data.model.UserModel
 import com.fauzan.storytelling.data.remote.response.ErrorResponse
 import com.fauzan.storytelling.data.remote.retrofit.ApiService
@@ -20,6 +21,9 @@ class StoryRepository private constructor(
 ) {
     private val _userModel = MediatorLiveData<Result<UserModel?>>()
     val userModel: LiveData<Result<UserModel?>> = _userModel
+
+    private val _posts = MediatorLiveData<Result<List<StoryModel>>>()
+    val posts: LiveData<Result<List<StoryModel>>> = _posts
 
     private val _registerResult = MediatorLiveData<Result<Boolean>>()
     val registerResult: LiveData<Result<Boolean>> = _registerResult
@@ -74,6 +78,22 @@ class StoryRepository private constructor(
     suspend fun logout() {
         userPreference.clearSession()
         _userModel.value = Result.Success(null)
+    }
+
+    suspend fun getPosts() {
+        _posts.value = Result.Loading
+        try {
+            val response = apiService.getStories()
+            if (response.error) {
+                _posts.value = Result.Error(response.message)
+            } else {
+                _posts.value = Result.Success(response.toStoryModel())
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+            _posts.value = Result.Error(errorBody.message ?: e.message.toString())
+        }
     }
 
     companion object {

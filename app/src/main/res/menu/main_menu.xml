@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/language"
+        android:id="@+id/action_language"
+        android:icon="@drawable/ic_speaker_notes"
+        app:showAsAction="ifRoom"/>
+    <item android:title="@string/logout"
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="always" />
+</menu>
