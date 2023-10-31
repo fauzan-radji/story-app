@@ -3,7 +3,7 @@ package com.fauzan.storytelling.data.remote.response
 import com.fauzan.storytelling.data.model.StoryModel
 import com.google.gson.annotations.SerializedName
 
-data class ListStoryItem(
+data class Story(
 
 	@field:SerializedName("photoUrl")
 	val photoUrl: String,

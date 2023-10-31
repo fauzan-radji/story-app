@@ -9,7 +9,7 @@ import com.fauzan.storytelling.data.model.StoryModel
 import com.fauzan.storytelling.databinding.PostItemRowBinding
 import com.fauzan.storytelling.diffutil.StoryDiffCallback
 
-class StoryAdapter(private val listStory: MutableList<StoryModel>, private val listener: (StoryModel) -> Unit) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
+class StoryAdapter(private val listStory: MutableList<StoryModel>, private val listener: (StoryModel, PostItemRowBinding) -> Unit) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
     fun updateData(newListStory: List<StoryModel>) {
         val diffCalback = StoryDiffCallback(listStory, newListStory)
@@ -20,16 +20,18 @@ class StoryAdapter(private val listStory: MutableList<StoryModel>, private val l
     }
 
     class ViewHolder(private val binding: PostItemRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(story: StoryModel, listener: (StoryModel) -> Unit) {
+        fun bind(story: StoryModel, listener: (StoryModel, PostItemRowBinding) -> Unit) {
             with(binding) {
                 tvTitle.text = story.name
                 tvDescription.text = story.description
                 Glide.with(itemView.context)
                     .load(story.photoUrl)
                     .into(binding.ivThumbnail)
-                ivThumbnail.contentDescription = story.name
+                ivThumbnail.transitionName = "thumbnail_${story.id}"
+                tvTitle.transitionName = "title_${story.id}"
+                tvDescription.transitionName = "description_${story.id}"
                 itemView.setOnClickListener {
-                    listener(story)
+                    listener(story, binding)
                 }
             }
         }

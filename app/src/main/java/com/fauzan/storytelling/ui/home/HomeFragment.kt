@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fauzan.storytelling.R
 import com.fauzan.storytelling.data.Result
@@ -20,9 +21,19 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<HomeViewModel> { ViewModelFactory.getInstance(requireActivity()) }
     private val storyAdapter: StoryAdapter by lazy {
-        StoryAdapter(mutableListOf()) { story ->
-            val toDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
-            requireView().findNavController().navigate(toDetailFragment)
+        StoryAdapter(mutableListOf()) { story, binding ->
+            val toDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                id = story.id,
+                photoUrl = story.photoUrl,
+                name = story.name,
+                description = story.description
+            )
+            val extras = FragmentNavigatorExtras(
+                Pair(binding.ivThumbnail, "thumbnail_${story.id}"),
+                Pair(binding.tvTitle, "title_${story.id}"),
+                Pair(binding.tvDescription, "description_${story.id}")
+            )
+            requireView().findNavController().navigate(toDetailFragment, extras)
         }
     }
 
@@ -80,7 +91,7 @@ class HomeFragment : Fragment() {
 
                 is Result.Success -> {
                     if (result.data != null) {
-                        viewModel.getPosts()
+                        viewModel.getStories()
                     } else {
                         val toLoginFragment = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
                         requireView().findNavController().navigate(toLoginFragment)

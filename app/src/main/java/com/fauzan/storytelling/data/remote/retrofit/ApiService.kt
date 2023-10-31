@@ -3,10 +3,12 @@ package com.fauzan.storytelling.data.remote.retrofit
 import com.fauzan.storytelling.data.remote.response.ErrorResponse
 import com.fauzan.storytelling.data.remote.response.LoginResponse
 import com.fauzan.storytelling.data.remote.response.StoriesResponse
+import com.fauzan.storytelling.data.remote.response.StoryResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
     @FormUrlEncoded
@@ -26,4 +28,7 @@ interface ApiService {
 
     @GET("stories")
     suspend fun getStories(): StoriesResponse
+
+    @GET("stories/{storyId}")
+    suspend fun getStory(@Path("storyId") storyId: String): StoryResponse
 }

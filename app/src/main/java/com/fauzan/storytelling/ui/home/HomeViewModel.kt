@@ -20,9 +20,9 @@ class HomeViewModel(private val repository: StoryRepository) : ViewModel() {
         }
     }
 
-    fun getPosts() {
+    fun getStories() {
         viewModelScope.launch {
-            repository.getPosts()
+            repository.getStories()
         }
     }
 }
