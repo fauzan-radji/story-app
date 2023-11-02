@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(private val repository: StoryRepository) : ViewModel() {
 
     val userModel: LiveData<Result<UserModel?>> = repository.userModel
-    val posts: LiveData<Result<List<StoryModel>>> = repository.posts
+    val posts: LiveData<Result<List<StoryModel>>> = repository.stories
 
     fun logout() {
         viewModelScope.launch {

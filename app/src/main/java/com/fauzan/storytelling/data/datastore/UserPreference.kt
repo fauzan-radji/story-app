@@ -14,10 +14,6 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "us
 
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
-    private val NAME = stringPreferencesKey("name")
-    private val EMAIL = stringPreferencesKey("email")
-    private val TOKEN = stringPreferencesKey("token")
-
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[NAME] = user.name
@@ -43,6 +39,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     }
 
     companion object {
+        private val NAME = stringPreferencesKey("name")
+        private val EMAIL = stringPreferencesKey("email")
+        private val TOKEN = stringPreferencesKey("token")
+
         @Volatile
         private var instance: UserPreference? = null
 

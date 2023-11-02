@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fauzan.storytelling.di.Injection
+import com.fauzan.storytelling.ui.add.AddViewModel
 import com.fauzan.storytelling.ui.detail.DetailViewModel
 import com.fauzan.storytelling.ui.home.HomeViewModel
 import com.fauzan.storytelling.ui.login.LoginViewModel
@@ -18,6 +19,7 @@ class ViewModelFactory(private val repository: StoryRepository) : ViewModelProvi
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> RegisterViewModel(repository) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository) as T
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(repository) as T
+            modelClass.isAssignableFrom(AddViewModel::class.java) -> AddViewModel(repository) as T
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }

@@ -8,11 +8,11 @@ Here are some screenshots of the app.
 
 ## Key Features
 
-- [ ] Authentication
-  - [ ] Login
-  - [ ] Register
-  - [ ] Logout
-- [ ] Story Feature
-  - [ ] Story List
-  - [ ] Story Detail
-  - [ ] Add Story
+- [x] Authentication
+  - [x] Login
+  - [x] Register
+  - [x] Logout
+- [x] Story Feature
+  - [x] Story List
+  - [x] Story Detail
+  - [x] Add Story

@@ -4,5 +4,5 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners android:radius="10dp"/>
-    <stroke android:width="0.8dp" android:color="?attr/colorPrimary"/>
+    <stroke android:width="2dp" android:color="?attr/colorPrimary"/>
 </shape>

@@ -10,11 +10,16 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/Toolbar"
+        android:layout_width="match_parent"
         app:title="@string/add_new_story"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:navigationIcon="?attr/homeAsUpIndicator"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,11 +70,12 @@
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="16dp"
+                android:hint="@string/description"
                 android:background="@drawable/custom_edit_text"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
+                android:paddingVertical="16dp"
                 android:gravity="start"
                 app:layout_constraintEnd_toEndOf="@id/btn_upload"
                 app:layout_constraintStart_toStartOf="@id/btn_upload"

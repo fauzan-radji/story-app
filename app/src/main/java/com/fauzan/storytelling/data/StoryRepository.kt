@@ -5,14 +5,21 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import com.fauzan.storytelling.R
 import com.fauzan.storytelling.data.datastore.UserPreference
 import com.fauzan.storytelling.data.model.StoryModel
 import com.fauzan.storytelling.data.model.UserModel
 import com.fauzan.storytelling.data.remote.response.ErrorResponse
 import com.fauzan.storytelling.data.remote.retrofit.ApiService
+import com.fauzan.storytelling.utils.reduceFileImage
 import com.google.gson.Gson
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
+import java.io.File
 
 class StoryRepository private constructor(
     private val apiService: ApiService,
@@ -22,8 +29,8 @@ class StoryRepository private constructor(
     private val _userModel = MediatorLiveData<Result<UserModel?>>()
     val userModel: LiveData<Result<UserModel?>> = _userModel
 
-    private val _posts = MediatorLiveData<Result<List<StoryModel>>>()
-    val posts: LiveData<Result<List<StoryModel>>> = _posts
+    private val _stories = MediatorLiveData<Result<List<StoryModel>>>()
+    val stories: LiveData<Result<List<StoryModel>>> = _stories
 
     private val _registerResult = MediatorLiveData<Result<Boolean>>()
     val registerResult: LiveData<Result<Boolean>> = _registerResult
@@ -84,18 +91,18 @@ class StoryRepository private constructor(
     }
 
     suspend fun getStories() {
-        _posts.value = Result.Loading
+        _stories.value = Result.Loading
         try {
             val response = apiService.getStories()
             if (response.error) {
-                _posts.value = Result.Error(response.message)
+                _stories.value = Result.Error(response.message)
             } else {
-                _posts.value = Result.Success(response.toStoryModel())
+                _stories.value = Result.Success(response.toStoryModel())
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            _posts.value = Result.Error(errorBody.message ?: e.message.toString())
+            _stories.value = Result.Error(errorBody.message ?: e.message.toString())
         }
     }
 
@@ -112,6 +119,32 @@ class StoryRepository private constructor(
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
             _story.value = Result.Error(errorBody.message ?: e.message.toString())
+        }
+    }
+
+    fun addStory(description: String, imageFile: File) = liveData {
+        emit(Result.Loading)
+
+        val compressedFile = imageFile.reduceFileImage()
+        val descriptionRequest = description.toRequestBody("text/plain".toMediaType())
+        val photoRequest = compressedFile.asRequestBody("image/jpeg".toMediaType())
+        val photoMultipartBody = MultipartBody.Part.createFormData(
+            "photo",
+            compressedFile.name,
+            photoRequest
+        )
+
+        try {
+            val response = apiService.addStory(descriptionRequest, photoMultipartBody)
+            if (response.error == true) {
+                emit(Result.Error(response.message ?: context.getString(R.string.something_went_wrong)))
+            } else {
+                emit(Result.Success(response.message ?: context.getString(R.string.success)))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+            emit(Result.Error(errorBody.message ?: e.message.toString()))
         }
     }
 
