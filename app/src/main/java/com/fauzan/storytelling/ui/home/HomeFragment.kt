@@ -83,24 +83,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun observe() {
-        viewModel.userModel.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    //
-                }
-
-                is Result.Success -> {
-                    if (result.data != null) {
-                        viewModel.getStories()
-                    } else {
-                        val toLoginFragment = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
-                        requireView().findNavController().navigate(toLoginFragment)
-                    }
-                }
-
-                is Result.Error -> {
-                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                }
+        viewModel.checkSession().observe(viewLifecycleOwner) { userModel ->
+            if (userModel.token.isNullOrEmpty()) {
+                val toLoginFragment = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+                requireView().findNavController().navigate(toLoginFragment)
+            } else {
+                viewModel.getStories()
             }
         }
 

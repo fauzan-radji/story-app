@@ -6,12 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.fauzan.storytelling.data.Result
 import com.fauzan.storytelling.data.StoryRepository
 import com.fauzan.storytelling.data.model.StoryModel
-import com.fauzan.storytelling.data.model.UserModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: StoryRepository) : ViewModel() {
 
-    val userModel: LiveData<Result<UserModel?>> = repository.userModel
     val posts: LiveData<Result<List<StoryModel>>> = repository.stories
 
     fun logout() {
@@ -25,4 +23,6 @@ class HomeViewModel(private val repository: StoryRepository) : ViewModel() {
             repository.getStories()
         }
     }
+
+    fun checkSession() = repository.checkSession()
 }

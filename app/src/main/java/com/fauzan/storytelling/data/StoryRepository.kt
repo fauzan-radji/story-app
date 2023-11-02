@@ -26,9 +26,6 @@ class StoryRepository private constructor(
     private val userPreference: UserPreference,
     private val context: Context
 ) {
-    private val _userModel = MediatorLiveData<Result<UserModel?>>()
-    val userModel: LiveData<Result<UserModel?>> = _userModel
-
     private val _stories = MediatorLiveData<Result<List<StoryModel>>>()
     val stories: LiveData<Result<List<StoryModel>>> = _stories
 
@@ -38,23 +35,23 @@ class StoryRepository private constructor(
     private val _story = MediatorLiveData<Result<StoryModel>>()
     val story: LiveData<Result<StoryModel>> = _story
 
-    suspend fun login(email: String, password: String) {
-        _userModel.value = Result.Loading
+    fun login(email: String, password: String) = liveData {
+        emit(Result.Loading)
         try {
             val response = apiService.login(email, password)
             if (response.error) {
-                _userModel.value = Result.Error(response.message)
+                emit(Result.Error(response.message))
             } else {
                 val name = response.loginResult.name
                 val token = response.loginResult.token
                 val userModel = UserModel(name, email, token)
                 userPreference.saveSession(userModel)
-                _userModel.value = Result.Success(userModel)
+                emit(Result.Success(true))
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            _userModel.value = Result.Error(errorBody.message ?: e.message.toString())
+            emit(Result.Error(errorBody.message ?: e.message.toString()))
         }
     }
 
@@ -74,20 +71,10 @@ class StoryRepository private constructor(
         }
     }
 
-    fun checkSession() {
-        _userModel.value = Result.Loading
-        _userModel.addSource(userPreference.getSession().asLiveData()) { userModel ->
-            if (userModel.token.isNullOrEmpty()) {
-                _userModel.value = Result.Error(context.getString(R.string.session_expired_please_login_again))
-            } else {
-                _userModel.value = Result.Success(userModel)
-            }
-        }
-    }
+    fun checkSession() = userPreference.getSession().asLiveData()
 
     suspend fun logout() {
         userPreference.clearSession()
-        _userModel.value = Result.Success(null)
     }
 
     suspend fun getStories() {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -31,9 +32,15 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.checkSession()
         setupOnClickListeners()
-        observe()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().finish()
+        }
     }
 
     override fun onDestroyView() {
@@ -60,7 +67,7 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.login(email, password)
+            login(email, password)
         }
 
         binding.btnRegister.setOnClickListener {
@@ -69,18 +76,16 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun observe() {
-        viewModel.result.observe(viewLifecycleOwner) { result ->
+    private fun login(email: String, password: String) {
+        viewModel.login(email, password).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    if(result.data != null) {
-                        val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        requireView().findNavController().navigate(toHomeFragment)
-                    }
+                    val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    requireView().findNavController().navigate(toHomeFragment)
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
