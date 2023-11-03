@@ -29,9 +29,6 @@ class StoryRepository private constructor(
     private val _stories = MediatorLiveData<Result<List<StoryModel>>>()
     val stories: LiveData<Result<List<StoryModel>>> = _stories
 
-    private val _registerResult = MediatorLiveData<Result<Boolean>>()
-    val registerResult: LiveData<Result<Boolean>> = _registerResult
-
     private val _story = MediatorLiveData<Result<StoryModel>>()
     val story: LiveData<Result<StoryModel>> = _story
 
@@ -55,19 +52,19 @@ class StoryRepository private constructor(
         }
     }
 
-    suspend fun register(name: String, email: String, password: String) {
-        _registerResult.value = Result.Loading
+    fun register(name: String, email: String, password: String) = liveData {
+        emit(Result.Loading)
         try {
             val response = apiService.register(name, email, password)
             if (response.error == true) {
-                _registerResult.value = Result.Error(response.message ?: context.getString(R.string.something_went_wrong))
+                emit(Result.Error(response.message ?: context.getString(R.string.something_went_wrong)))
             } else {
-                _registerResult.value = Result.Success(true)
+                emit(Result.Success(true))
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            _registerResult.value = Result.Error(errorBody.message ?: e.message.toString())
+           emit(Result.Error(errorBody.message ?: e.message.toString()))
         }
     }
 

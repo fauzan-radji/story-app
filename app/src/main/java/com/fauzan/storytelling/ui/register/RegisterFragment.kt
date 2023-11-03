@@ -31,7 +31,6 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupOnClickListeners()
-        observe()
     }
 
     override fun onDestroyView() {
@@ -77,7 +76,7 @@ class RegisterFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.register(name, email, password)
+            register(name, email, password)
         }
 
         binding.btnLogin.setOnClickListener {
@@ -86,8 +85,8 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun observe() {
-        viewModel.result.observe(viewLifecycleOwner) { result ->
+    private fun register(name: String, email: String, password: String) {
+        viewModel.register(name, email, password).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
