@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">E-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">Se connecter</string>
+    <string name="register">S\'inscrire</string>
+    <string name="full_name">Nom complet</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="password_must_be_at_least_8_characters">Le mot de passe doit contenir au moins 8 caractères</string>
+    <string name="email_is_invalid">L\'adresse e-mail n\'est pas valide</string>
+    <string name="email_cannot_be_empty">L\'adresse e-mail ne peut pas être vide</string>
+    <string name="password_cannot_be_empty">Le mot de passe ne peut pas être vide</string>
+    <string name="something_went_wrong">Quelque chose s\'est mal passé</string>
+    <string name="session_expired_please_login_again">Session expirée, veuillez vous reconnecter</string>
+    <string name="success">Succès</string>
+    <string name="name_cannot_be_empty">Le nom ne peut pas être vide</string>
+    <string name="confirm_password_cannot_be_empty">La confirmation du mot de passe ne peut pas être vide</string>
+    <string name="password_and_confirm_password_must_be_same">Le mot de passe et la confirmation du mot de passe doivent être identiques</string>
+    <string name="description">Description</string>
+    <string name="logout">Déconnexion</string>
+    <string name="language">Langue</string>
+    <string name="detail_story">Détail de l\'histoire</string>
+    <string name="add_new_story">Ajouter une nouvelle histoire</string>
+    <string name="thumbnail">Miniature</string>
+    <string name="upload">Télécharger</string>
+    <string name="gallery">Galerie</string>
+    <string name="camera">Appareil photo</string>
+    <string name="permission_granted">Autorisation accordée</string>
+    <string name="permission_denied">Autorisation refusée</string>
+    <string name="capture">Capturer</string>
+    <string name="switch_camera">Changer d\'appareil photo</string>
+    <string name="failed_to_start_camera">Échec de démarrage de l\'appareil photo</string>
+    <string name="image_saved_successfully">Image sauvegardée avec succès</string>
+    <string name="failed_to_save_image">Échec de sauvegarde de l\'image</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+</resources>

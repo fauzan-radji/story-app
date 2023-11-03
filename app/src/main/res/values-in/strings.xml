@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="password_must_be_at_least_8_characters">Kata Sandi minimal harus 8 karakter</string>
+    <string name="email_is_invalid">Email tidak valid</string>
+    <string name="email_cannot_be_empty">Email tidak boleh kosong</string>
+    <string name="password_cannot_be_empty">Kata Sandi tidak boleh kosong</string>
+    <string name="something_went_wrong">Terjadi kesalahan</string>
+    <string name="session_expired_please_login_again">Sesi berakhir, silakan masuk kembali</string>
+    <string name="success">Sukses</string>
+    <string name="name_cannot_be_empty">Nama tidak boleh kosong</string>
+    <string name="confirm_password_cannot_be_empty">Konfirmasi Kata Sandi tidak boleh kosong</string>
+    <string name="password_and_confirm_password_must_be_same">Kata Sandi dan konfirmasi Kata Sandi harus sama</string>
+    <string name="description">Deskripsi</string>
+    <string name="logout">Keluar</string>
+    <string name="language">Bahasa</string>
+    <string name="detail_story">Rincian Cerita</string>
+    <string name="add_new_story">Tambah Cerita Baru</string>
+    <string name="thumbnail">Gambar Mini</string>
+    <string name="upload">Unggah</string>
+    <string name="gallery">Galeri</string>
+    <string name="camera">Kamera</string>
+    <string name="permission_granted">Izin diberikan</string>
+    <string name="permission_denied">Izin ditolak</string>
+    <string name="capture">Ambil Gambar</string>
+    <string name="switch_camera">Ganti Kamera</string>
+    <string name="failed_to_start_camera">Gagal memulai kamera</string>
+    <string name="image_saved_successfully">Gambar berhasil disimpan</string>
+    <string name="failed_to_save_image">Gagal menyimpan gambar</string>
+    <string name="next">Berikutnya</string>
+    <string name="previous">Sebelumnya</string>
+</resources>
