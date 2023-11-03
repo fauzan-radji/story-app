@@ -18,7 +18,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         dataStore.edit { preferences ->
             preferences[NAME] = user.name
             preferences[EMAIL] = user.email
-            preferences[TOKEN] = user.token ?: ""
+            preferences[TOKEN] = user.token
         }
     }
 
@@ -27,7 +27,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             UserModel(
                 name = preferences[NAME]?: "",
                 email = preferences[EMAIL] ?: "",
-                token = preferences[TOKEN]
+                token = preferences[TOKEN] ?: ""
             )
         }
     }

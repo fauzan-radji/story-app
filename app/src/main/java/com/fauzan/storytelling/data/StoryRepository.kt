@@ -14,6 +14,7 @@ import com.fauzan.storytelling.data.remote.response.ErrorResponse
 import com.fauzan.storytelling.data.remote.retrofit.ApiService
 import com.fauzan.storytelling.utils.reduceFileImage
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.first
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -59,16 +60,22 @@ class StoryRepository private constructor(
             if (response.error == true) {
                 emit(Result.Error(response.message ?: context.getString(R.string.something_went_wrong)))
             } else {
-                emit(Result.Success(true))
+                emit(Result.Success(response.message ?: context.getString(R.string.success)))
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
            emit(Result.Error(errorBody.message ?: e.message.toString()))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
         }
     }
 
     fun checkSession() = userPreference.getSession().asLiveData()
+    private suspend fun getToken(): String {
+        val userModel = userPreference.getSession().first()
+        return "Bearer ${userModel.token}"
+    }
 
     suspend fun logout() {
         userPreference.clearSession()
@@ -77,7 +84,7 @@ class StoryRepository private constructor(
     suspend fun getStories() {
         _stories.value = Result.Loading
         try {
-            val response = apiService.getStories()
+            val response = apiService.getStories(getToken())
             if (response.error) {
                 _stories.value = Result.Error(response.message)
             } else {
@@ -93,7 +100,7 @@ class StoryRepository private constructor(
     suspend fun getStory(id: String) {
         _story.value = Result.Loading
         try {
-            val response = apiService.getStory(id)
+            val response = apiService.getStory(getToken(), id)
             if (response.error) {
                 _story.value = Result.Error(response.message)
             } else {
@@ -119,7 +126,7 @@ class StoryRepository private constructor(
         )
 
         try {
-            val response = apiService.addStory(descriptionRequest, photoMultipartBody)
+            val response = apiService.addStory(getToken(), descriptionRequest, photoMultipartBody)
             if (response.error == true) {
                 emit(Result.Error(response.message ?: context.getString(R.string.something_went_wrong)))
             } else {

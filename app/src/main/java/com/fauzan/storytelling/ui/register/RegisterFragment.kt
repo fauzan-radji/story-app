@@ -95,6 +95,7 @@ class RegisterFragment : Fragment() {
                 }
 
                 is Result.Success -> {
+                    Toast.makeText(requireContext(), result.data, Toast.LENGTH_SHORT).show()
                     val toLoginFragment = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                     requireView().findNavController().navigate(toLoginFragment)
                 }

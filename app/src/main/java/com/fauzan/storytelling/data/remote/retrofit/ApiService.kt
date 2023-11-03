@@ -9,6 +9,7 @@ import okhttp3.RequestBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -31,14 +32,20 @@ interface ApiService {
     ): ErrorResponse
 
     @GET("stories")
-    suspend fun getStories(): StoriesResponse
+    suspend fun getStories(
+        @Header("Authorization") token: String
+    ): StoriesResponse
 
     @GET("stories/{storyId}")
-    suspend fun getStory(@Path("storyId") storyId: String): StoryResponse
+    suspend fun getStory(
+        @Header("Authorization") token: String,
+        @Path("storyId") storyId: String
+    ): StoryResponse
 
     @Multipart
     @POST("stories")
     suspend fun addStory(
+        @Header("Authorization") token: String,
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part
     ): ErrorResponse
