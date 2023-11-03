@@ -90,18 +90,19 @@ class RegisterFragment : Fragment() {
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.btnRegister.text = ""
+                    binding.btnRegister.isEnabled = false
                 }
 
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    if(result.data) {
-                        val toLoginFragment = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                        requireView().findNavController().navigate(toLoginFragment)
-                    }
+                    val toLoginFragment = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                    requireView().findNavController().navigate(toLoginFragment)
                 }
 
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
+                    binding.btnRegister.text = getString(R.string.register)
+                    binding.btnRegister.isEnabled = true
                     Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }

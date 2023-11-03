@@ -81,14 +81,17 @@ class LoginFragment : Fragment() {
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.btnLogin.text = ""
+                    binding.btnLogin.isEnabled = false
                 }
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
                     val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                     requireView().findNavController().navigate(toHomeFragment)
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
+                    binding.btnLogin.text = getString(R.string.login)
+                    binding.btnLogin.isEnabled = true
                     Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }

@@ -110,15 +110,18 @@ class AddFragment : Fragment() {
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.btnUpload.text = ""
+                    binding.btnUpload.isEnabled = false
                 }
 
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
                     requireView().findNavController().navigateUp()
                 }
 
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
+                    binding.btnUpload.text = getString(R.string.upload)
+                    binding.btnUpload.isEnabled = true
                     Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }

@@ -143,5 +143,4 @@ class StoryRepository private constructor(
             }
         }
     }
-
 }
