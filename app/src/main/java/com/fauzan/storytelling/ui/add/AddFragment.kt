@@ -80,9 +80,9 @@ class AddFragment : Fragment() {
     }
 
     private fun setupOnClickListener() {
-        binding.toolbar.setNavigationOnClickListener {
-            requireView().findNavController().navigateUp()
-        }
+//        binding.toolbar.setNavigationOnClickListener {
+//            requireView().findNavController().navigateUp()
+//        }
 
         binding.btnGallery.setOnClickListener {
             galleryLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))

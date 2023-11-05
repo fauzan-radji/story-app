@@ -1,8 +1,6 @@
 package com.fauzan.storytelling.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fauzan.storytelling.R
 import com.fauzan.storytelling.data.Result
 import com.fauzan.storytelling.data.ViewModelFactory
 import com.fauzan.storytelling.databinding.FragmentHomeBinding
@@ -50,38 +47,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rvPost.adapter = storyAdapter
-        binding.rvPost.layoutManager = LinearLayoutManager(requireContext())
-        setupOnClickListeners()
+        binding.rvPosts.adapter = storyAdapter
+        binding.rvPosts.layoutManager = LinearLayoutManager(requireContext())
         observe()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun setupOnClickListeners() {
-        binding.toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_language -> {
-                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-                    true
-                }
-
-                R.id.action_logout -> {
-                    viewModel.logout()
-                    true
-                }
-
-                else -> false
-            }
-        }
-
-        binding.fabAdd.setOnClickListener {
-            val toAddPostFragment = HomeFragmentDirections.actionHomeFragmentToAddFragment()
-            requireView().findNavController().navigate(toAddPostFragment)
-        }
     }
 
     private fun observe() {

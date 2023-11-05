@@ -11,7 +11,6 @@
     <string name="email_cannot_be_empty">L\'indirizzo e-mail non può essere vuoto</string>
     <string name="password_cannot_be_empty">La password non può essere vuota</string>
     <string name="something_went_wrong">Si è verificato un errore</string>
-    <string name="session_expired_please_login_again">Sessione scaduta, effettua nuovamente l\'accesso</string>
     <string name="success">Successo</string>
     <string name="name_cannot_be_empty">Il nome non può essere vuoto</string>
     <string name="confirm_password_cannot_be_empty">La conferma della password non può essere vuota</string>
@@ -19,19 +18,19 @@
     <string name="description">Descrizione</string>
     <string name="logout">Esci</string>
     <string name="language">Lingua</string>
-    <string name="detail_story">Dettagli della storia</string>
-    <string name="add_new_story">Aggiungi una nuova storia</string>
+    <string name="title_detail">Dettagli della storia</string>
     <string name="thumbnail">Miniatura</string>
     <string name="upload">Carica</string>
     <string name="gallery">Galleria</string>
     <string name="camera">Fotocamera</string>
-    <string name="permission_granted">Autorizzazione concessa</string>
     <string name="permission_denied">Autorizzazione negata</string>
     <string name="capture">Cattura</string>
     <string name="switch_camera">Cambia fotocamera</string>
     <string name="failed_to_start_camera">Impossibile avviare la fotocamera</string>
-    <string name="image_saved_successfully">Immagine salvata con successo</string>
     <string name="failed_to_save_image">Impossibile salvare l\'immagine</string>
     <string name="next">Avanti</string>
     <string name="previous">Precedente</string>
+    <string name="title_home">Home</string>
+    <string name="title_add">Nuova Storia</string>
+    <string name="title_maps">Mappe</string>
 </resources>

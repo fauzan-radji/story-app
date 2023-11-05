@@ -12,12 +12,6 @@ class HomeViewModel(private val repository: StoryRepository) : ViewModel() {
 
     val posts: LiveData<Result<List<StoryModel>>> = repository.stories
 
-    fun logout() {
-        viewModelScope.launch {
-            repository.logout()
-        }
-    }
-
     fun getStories() {
         viewModelScope.launch {
             repository.getStories()

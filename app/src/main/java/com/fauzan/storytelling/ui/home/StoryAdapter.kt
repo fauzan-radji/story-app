@@ -26,12 +26,12 @@ class StoryAdapter(private val listStory: MutableList<StoryModel>, private val l
                 tvDescription.text = story.description
                 Glide.with(itemView.context)
                     .load(story.photoUrl)
-                    .into(binding.ivThumbnail)
+                    .into(ivThumbnail)
                 ivThumbnail.transitionName = "thumbnail_${story.id}"
                 tvTitle.transitionName = "title_${story.id}"
                 tvDescription.transitionName = "description_${story.id}"
                 itemView.setOnClickListener {
-                    listener(story, binding)
+                    listener(story, this)
                 }
             }
         }

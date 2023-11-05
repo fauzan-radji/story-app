@@ -7,7 +7,6 @@
     tools:context=".ui.register.RegisterFragment">
 
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutDescription="@xml/fragment_register_xml_constraintlayout_scene">

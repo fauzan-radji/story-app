@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">StoryTelling</string>
+    <string name="activity_main_label" translatable="false">MainActivity</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -11,7 +12,6 @@
     <string name="email_cannot_be_empty">Email cannot be empty</string>
     <string name="password_cannot_be_empty">Password cannot be empty</string>
     <string name="something_went_wrong">Something went wrong</string>
-    <string name="session_expired_please_login_again">Session expired, please login again</string>
     <string name="success">Success</string>
     <string name="name_cannot_be_empty">Name cannot be empty</string>
     <string name="confirm_password_cannot_be_empty">Confirm Password cannot be empty</string>
@@ -19,19 +19,19 @@
     <string name="description">Description</string>
     <string name="logout">Logout</string>
     <string name="language">Language</string>
-    <string name="detail_story">Detail Story</string>
-    <string name="add_new_story">Add New Story</string>
     <string name="thumbnail">Thumbnail</string>
     <string name="upload">Upload</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
-    <string name="permission_granted">Permission granted</string>
     <string name="permission_denied">Permission denied</string>
     <string name="capture">Capture</string>
     <string name="switch_camera">Switch camera</string>
     <string name="failed_to_start_camera">Failed to start camera</string>
-    <string name="image_saved_successfully">Image saved successfully</string>
     <string name="failed_to_save_image">Failed to save image</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="title_home">Home</string>
+    <string name="title_add">New Story</string>
+    <string name="title_maps">Maps</string>
+    <string name="title_detail">Detail Story</string>
 </resources>

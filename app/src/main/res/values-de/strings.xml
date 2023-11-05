@@ -11,7 +11,6 @@
     <string name="email_cannot_be_empty">E-Mail darf nicht leer sein</string>
     <string name="password_cannot_be_empty">Passwort darf nicht leer sein</string>
     <string name="something_went_wrong">Etwas ist schiefgelaufen</string>
-    <string name="session_expired_please_login_again">Sitzung abgelaufen, bitte erneut anmelden</string>
     <string name="success">Erfolg</string>
     <string name="name_cannot_be_empty">Name darf nicht leer sein</string>
     <string name="confirm_password_cannot_be_empty">Passwort bestätigen darf nicht leer sein</string>
@@ -19,19 +18,19 @@
     <string name="description">Beschreibung</string>
     <string name="logout">Abmelden</string>
     <string name="language">Sprache</string>
-    <string name="detail_story">Detailansicht der Geschichte</string>
-    <string name="add_new_story">Neue Geschichte hinzufügen</string>
+    <string name="title_detail">Detailansicht der Geschichte</string>
     <string name="thumbnail">Vorschaubild</string>
     <string name="upload">Hochladen</string>
     <string name="gallery">Galerie</string>
     <string name="camera">Kamera</string>
-    <string name="permission_granted">Berechtigung erteilt</string>
     <string name="permission_denied">Berechtigung verweigert</string>
     <string name="capture">Aufnehmen</string>
     <string name="switch_camera">Kamera wechseln</string>
     <string name="failed_to_start_camera">Fehler beim Starten der Kamera</string>
-    <string name="image_saved_successfully">Bild erfolgreich gespeichert</string>
     <string name="failed_to_save_image">Fehler beim Speichern des Bildes</string>
     <string name="next">Weiter</string>
     <string name="previous">Zurück</string>
+    <string name="title_home">Startseite</string>
+    <string name="title_add">Neue Geschichte</string>
+    <string name="title_maps">Karten</string>
 </resources>
