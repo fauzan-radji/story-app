@@ -81,10 +81,10 @@ class StoryRepository private constructor(
         userPreference.clearSession()
     }
 
-    suspend fun getStories() {
+    suspend fun getStories(withLocation: Boolean = false) {
         _stories.value = Result.Loading
         try {
-            val response = apiService.getStories(getToken())
+            val response = apiService.getStories(getToken(), if (withLocation) 1 else 0)
             if (response.error) {
                 _stories.value = Result.Error(response.message)
             } else {

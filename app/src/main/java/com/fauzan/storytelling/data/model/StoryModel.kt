@@ -5,7 +5,7 @@ data class StoryModel(
     val createdAt: String,
     val name: String,
     val description: String,
-    val lon: Any?,
+    val lon: Double?,
     val id: String,
-    val lat: Any?
+    val lat: Double?
 )

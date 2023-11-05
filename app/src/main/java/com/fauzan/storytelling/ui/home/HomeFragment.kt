@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModel.posts.observe(viewLifecycleOwner) { result ->
+        viewModel.stories.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE

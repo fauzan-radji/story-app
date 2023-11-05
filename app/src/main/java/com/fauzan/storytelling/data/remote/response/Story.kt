@@ -18,13 +18,13 @@ data class Story(
 	val description: String,
 
 	@field:SerializedName("lon")
-	val lon: Any?,
+	val lon: Double?,
 
 	@field:SerializedName("id")
 	val id: String,
 
 	@field:SerializedName("lat")
-	val lat: Any?
+	val lat: Double?
 ) {
 	fun toStoryModel(): StoryModel {
 		return StoryModel(

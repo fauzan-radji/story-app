@@ -1,4 +1,4 @@
-package com.fauzan.storytelling.ui.home
+package com.fauzan.storytelling.ui.maps
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -8,15 +8,13 @@ import com.fauzan.storytelling.data.StoryRepository
 import com.fauzan.storytelling.data.model.StoryModel
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: StoryRepository) : ViewModel() {
+class MapsViewModel(private val repository: StoryRepository) : ViewModel() {
 
     val stories: LiveData<Result<List<StoryModel>>> = repository.stories
 
-    fun getStories() {
+    fun getStories(withLocation: Boolean = false) {
         viewModelScope.launch {
-            repository.getStories()
+            repository.getStories(withLocation)
         }
     }
-
-    fun checkSession() = repository.checkSession()
 }
