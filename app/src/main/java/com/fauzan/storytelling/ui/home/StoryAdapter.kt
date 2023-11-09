@@ -2,22 +2,14 @@ package com.fauzan.storytelling.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fauzan.storytelling.data.model.StoryModel
 import com.fauzan.storytelling.databinding.PostItemRowBinding
-import com.fauzan.storytelling.diffutil.StoryDiffCallback
 
-class StoryAdapter(private val listStory: MutableList<StoryModel>, private val listener: (StoryModel, PostItemRowBinding) -> Unit) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
-
-    fun updateData(newListStory: List<StoryModel>) {
-        val diffCalback = StoryDiffCallback(listStory, newListStory)
-        val diffResult = DiffUtil.calculateDiff(diffCalback)
-        listStory.clear()
-        listStory.addAll(newListStory)
-        diffResult.dispatchUpdatesTo(this)
-    }
+class StoryAdapter(private val listener: (StoryModel, PostItemRowBinding) -> Unit) : PagingDataAdapter<StoryModel, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     class ViewHolder(private val binding: PostItemRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryModel, listener: (StoryModel, PostItemRowBinding) -> Unit) {
@@ -38,13 +30,31 @@ class StoryAdapter(private val listStory: MutableList<StoryModel>, private val l
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = PostItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(PostItemRowBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
 
-    override fun getItemCount(): Int = listStory.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listStory[position], listener)
+        val data = getItem(position)
+        if (data != null)
+            holder.bind(data, listener)
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryModel>() {
+            override fun areItemsTheSame(oldItem: StoryModel, newItem: StoryModel): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: StoryModel, newItem: StoryModel): Boolean {
+                return oldItem.id == newItem.id &&
+                        oldItem.name == newItem.name &&
+                        oldItem.description == newItem.description &&
+                        oldItem.photoUrl == newItem.photoUrl
+            }
+        }
     }
 }

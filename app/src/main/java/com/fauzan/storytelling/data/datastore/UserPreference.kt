@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.fauzan.storytelling.data.model.UserModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preference")
@@ -30,6 +31,11 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 token = preferences[TOKEN] ?: ""
             )
         }
+    }
+
+    suspend fun getToken(): String {
+        val userModel = getSession().first()
+        return "Bearer ${userModel.token}"
     }
 
     suspend fun clearSession() {

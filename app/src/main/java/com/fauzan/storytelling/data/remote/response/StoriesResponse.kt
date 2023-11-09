@@ -1,5 +1,6 @@
 package com.fauzan.storytelling.data.remote.response
 
+import com.fauzan.storytelling.data.local.entity.StoryEntity
 import com.fauzan.storytelling.data.model.StoryModel
 import com.google.gson.annotations.SerializedName
 
@@ -20,5 +21,13 @@ data class StoriesResponse(
 			listStoryModel.add(it.toStoryModel())
 		}
 		return listStoryModel
+	}
+
+	fun toStoryEntity(): List<StoryEntity> {
+		val listStoryEntity = mutableListOf<StoryEntity>()
+		listStory.forEach {
+			listStoryEntity.add(it.toStoryEntity())
+		}
+		return listStoryEntity
 	}
 }

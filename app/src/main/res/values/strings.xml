@@ -34,4 +34,6 @@
     <string name="title_add">New Story</string>
     <string name="title_maps">Maps</string>
     <string name="title_detail">Detail Story</string>
+    <string name="retry"><u>Retry</u></string>
+    <string name="timeout">Timeout</string>
 </resources>

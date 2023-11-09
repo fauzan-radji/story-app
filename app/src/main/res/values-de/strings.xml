@@ -33,4 +33,6 @@
     <string name="title_home">Startseite</string>
     <string name="title_add">Neue Geschichte</string>
     <string name="title_maps">Karten</string>
+    <string name="retry"><u>Wiederholen</u></string>
+    <string name="timeout">Zeitüberschreitung</string>
 </resources>

@@ -33,4 +33,6 @@
     <string name="title_home">Beranda</string>
     <string name="title_add">Cerita Baru</string>
     <string name="title_maps">Peta</string>
+    <string name="retry"><u>Coba lagi</u></string>
+    <string name="timeout">Batas waktu habis</string>
 </resources>

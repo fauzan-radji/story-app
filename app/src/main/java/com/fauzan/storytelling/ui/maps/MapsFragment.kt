@@ -29,8 +29,6 @@ class MapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
         mMap = googleMap
-
-        viewModel.getStories(withLocation = true)
     }
 
     override fun onCreateView(
@@ -47,7 +45,7 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        viewModel.stories.observe(viewLifecycleOwner) { stories ->
+        viewModel.getStories().observe(viewLifecycleOwner) { stories ->
             when(stories) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE

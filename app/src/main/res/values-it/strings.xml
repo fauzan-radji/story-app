@@ -33,4 +33,6 @@
     <string name="title_home">Home</string>
     <string name="title_add">Nuova Storia</string>
     <string name="title_maps">Mappe</string>
+    <string name="retry"><u>Riprova</u></string>
+    <string name="timeout">Timeout</string>
 </resources>
