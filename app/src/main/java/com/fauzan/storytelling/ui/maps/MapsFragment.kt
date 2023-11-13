@@ -1,5 +1,6 @@
 package com.fauzan.storytelling.ui.maps
 
+import android.content.res.Resources
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsFragment : Fragment() {
@@ -29,6 +31,8 @@ class MapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
         mMap = googleMap
+
+        setMapStyle(googleMap)
     }
 
     override fun onCreateView(
@@ -81,5 +85,22 @@ class MapsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setMapStyle(googleMap: GoogleMap) {
+        try {
+            val success = googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    requireContext(),
+                    R.raw.map_style
+                )
+            )
+
+            if (!success) {
+                Toast.makeText(requireContext(), "Error loading map style", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Resources.NotFoundException) {
+            Toast.makeText(requireContext(), "Error loading map style", Toast.LENGTH_SHORT).show()
+        }
     }
 }
