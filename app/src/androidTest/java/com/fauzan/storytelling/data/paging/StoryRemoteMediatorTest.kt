@@ -93,7 +93,11 @@ class FakeApiService : ApiService {
     }
 
     override suspend fun addStory(
-        token: String, description: RequestBody, photo: MultipartBody.Part
+        token: String,
+        description: RequestBody,
+        photo: MultipartBody.Part,
+        lat: Double?,
+        lon: Double?
     ): ErrorResponse {
         TODO("Not yet implemented")
     }

@@ -35,4 +35,7 @@
     <string name="title_maps">Cartes</string>
     <string name="retry"><u>Réessayer</u></string>
     <string name="timeout">Délai dépassé</string>
+    <string name="include_location">Inclure ma position</string>
+    <string name="latitude">Latitude : <b>%s</b></string>
+    <string name="longitude">Longitude : <b>%s</b></string>
 </resources>

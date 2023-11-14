@@ -72,6 +72,8 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
     implementation("androidx.room:room-paging:2.6.0")
     implementation("androidx.room:room-ktx:2.6.0")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("org.mockito:mockito-core:5.7.0")

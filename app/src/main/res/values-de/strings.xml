@@ -35,4 +35,7 @@
     <string name="title_maps">Karten</string>
     <string name="retry"><u>Wiederholen</u></string>
     <string name="timeout">Zeitüberschreitung</string>
+    <string name="include_location">Meinen Standort einschließen</string>
+    <string name="latitude">Breitengrad: <b>%s</b></string>
+    <string name="longitude">Längengrad: <b>%s</b></string>
 </resources>

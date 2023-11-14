@@ -55,9 +55,11 @@ class HomeViewModelTest {
         )
         differ.submitData(actualStories)
 
-        Assert.assertNotNull(differ.snapshot())
-        Assert.assertEquals(dummyStories.toStoryModel().size, differ.snapshot().size)
-        Assert.assertEquals(dummyStories.toStoryModel()[0], differ.snapshot()[0])
+        val storyModels = dummyStories.toStoryModel()
+        val snapshot = differ.snapshot()
+        Assert.assertNotNull(snapshot)
+        Assert.assertEquals(storyModels.size, snapshot.size)
+        Assert.assertEquals(storyModels[0], snapshot[0])
     }
 
     @Test

@@ -36,4 +36,7 @@
     <string name="title_detail">Detail Story</string>
     <string name="retry"><u>Retry</u></string>
     <string name="timeout">Timeout</string>
+    <string name="include_location">Include my location</string>
+    <string name="latitude">Latitude: <b>%s</b></string>
+    <string name="longitude">Longitude: <b>%s</b></string>
 </resources>

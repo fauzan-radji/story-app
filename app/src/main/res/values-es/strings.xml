@@ -35,4 +35,7 @@
     <string name="title_maps">Mapas</string>
     <string name="retry"><u>Reintentar</u></string>
     <string name="timeout">Tiempo agotado</string>
+    <string name="include_location">Incluir mi ubicación</string>
+    <string name="latitude">Latitud: <b>%s</b></string>
+    <string name="longitude">Longitud: <b>%s</b></string>
 </resources>

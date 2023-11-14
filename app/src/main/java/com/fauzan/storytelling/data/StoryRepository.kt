@@ -12,7 +12,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.fauzan.storytelling.R
+import com.fauzan.storytelling.data.datastore.SettingsPreference
 import com.fauzan.storytelling.data.datastore.UserPreference
+import com.fauzan.storytelling.data.datastore.settingsDataStore
+import com.fauzan.storytelling.data.datastore.userDataStore
 import com.fauzan.storytelling.data.local.StoryDatabase
 import com.fauzan.storytelling.data.model.StoryModel
 import com.fauzan.storytelling.data.model.UserModel
@@ -31,11 +34,10 @@ import java.io.File
 class StoryRepository private constructor(
     private val database: StoryDatabase,
     private val apiService: ApiService,
-    private val userPreference: UserPreference,
     private val context: Context
 ) {
-//    private val _stories = MediatorLiveData<Result<List<StoryModel>>>()
-//    val stories: LiveData<Result<List<StoryModel>>> = _stories
+    private val userPreference = UserPreference.getInstance(context.userDataStore)
+    private val settingsPreference = SettingsPreference.getInstance(context.settingsDataStore)
 
     private val _story = MediatorLiveData<Result<StoryModel>>()
     val story: LiveData<Result<StoryModel>> = _story
@@ -80,6 +82,8 @@ class StoryRepository private constructor(
 
     fun checkSession() = userPreference.getSession().asLiveData()
     private suspend fun getToken(): String = userPreference.getToken()
+    fun getIncludeLocation() = settingsPreference.getIncludeLocation().asLiveData()
+    suspend fun setIncludeLocation(isIncluded: Boolean) = settingsPreference.setIncludeLocation(isIncluded)
 
     suspend fun logout() {
         userPreference.clearSession()
@@ -128,7 +132,7 @@ class StoryRepository private constructor(
         }
     }
 
-    fun addStory(description: String, imageFile: File) = liveData {
+    fun addStory(description: String, imageFile: File, lat: Double?, lon: Double?) = liveData {
         emit(Result.Loading)
 
         val compressedFile = imageFile.reduceFileImage()
@@ -141,7 +145,7 @@ class StoryRepository private constructor(
         )
 
         try {
-            val response = apiService.addStory(getToken(), descriptionRequest, photoMultipartBody)
+            val response = apiService.addStory(getToken(), descriptionRequest, photoMultipartBody, lat, lon)
             if (response.error == true) {
                 emit(Result.Error(response.message ?: context.getString(R.string.something_went_wrong)))
             } else {
@@ -159,9 +163,9 @@ class StoryRepository private constructor(
         @Volatile
         private var instance: StoryRepository? = null
 
-        fun getInstance(database: StoryDatabase, apiService: ApiService, userPreference: UserPreference, context: Context): StoryRepository {
+        fun getInstance(database: StoryDatabase, apiService: ApiService, context: Context): StoryRepository {
             return instance ?: synchronized(this) {
-                instance ?: StoryRepository(database, apiService, userPreference, context).also { instance = it }
+                instance ?: StoryRepository(database, apiService, context).also { instance = it }
             }
         }
     }

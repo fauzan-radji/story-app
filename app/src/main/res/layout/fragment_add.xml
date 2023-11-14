@@ -64,6 +64,35 @@
             app:layout_constraintTop_toBottomOf="@id/btn_gallery"
             tools:ignore="LabelFor" />
 
+        <CheckBox
+            android:id="@+id/cb_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/include_location"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/et_description"
+            app:layout_constraintStart_toStartOf="@id/et_description"
+            app:layout_constraintTop_toBottomOf="@id/et_description" />
+
+        <TextView
+            android:id="@+id/tv_lat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/latitude"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_location" />
+
+        <TextView
+            android:id="@+id/tv_lon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/longitude"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_lat" />
+
         <Button
             android:id="@+id/btn_upload"
             style="@style/Button"
@@ -76,7 +105,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_description" />
+            app:layout_constraintTop_toBottomOf="@id/tv_lon" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_bar"

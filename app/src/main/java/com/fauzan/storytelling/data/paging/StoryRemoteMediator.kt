@@ -7,7 +7,7 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.fauzan.storytelling.data.datastore.UserPreference
-import com.fauzan.storytelling.data.datastore.dataStore
+import com.fauzan.storytelling.data.datastore.userDataStore
 import com.fauzan.storytelling.data.local.StoryDatabase
 import com.fauzan.storytelling.data.local.entity.RemoteKeys
 import com.fauzan.storytelling.data.model.StoryModel
@@ -19,7 +19,7 @@ class StoryRemoteMediator(
     private val apiService: ApiService,
     context: Context
 ) : RemoteMediator<Int, StoryModel>() {
-    private val userPreference = UserPreference.getInstance(context.dataStore)
+    private val userPreference = UserPreference.getInstance(context.userDataStore)
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, StoryModel>): RemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->

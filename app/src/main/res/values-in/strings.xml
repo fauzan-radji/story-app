@@ -35,4 +35,7 @@
     <string name="title_maps">Peta</string>
     <string name="retry"><u>Coba lagi</u></string>
     <string name="timeout">Batas waktu habis</string>
+    <string name="include_location">Sertakan lokasi saya</string>
+    <string name="latitude">Lintang: <b>%s</b></string>
+    <string name="longitude">Bujur: <b>%s</b></string>
 </resources>
