@@ -5,7 +5,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.exifinterface.media.ExifInterface
+import androidx.fragment.app.Fragment
+import com.fauzan.storytelling.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -77,4 +82,18 @@ fun rotateImage(source: Bitmap, angle: Float): Bitmap {
         source, 0, 0, source.width, source.height,
         matrix, true
     )
+}
+
+fun Fragment.enterFullscreen() {
+    val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+    bottomNav.visibility = View.GONE
+
+    (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+}
+
+fun Fragment.exitFullscreen() {
+    val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+    bottomNav.visibility = View.VISIBLE
+
+    (requireActivity() as AppCompatActivity).supportActionBar?.show()
 }

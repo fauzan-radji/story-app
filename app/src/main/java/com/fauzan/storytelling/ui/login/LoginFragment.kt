@@ -1,12 +1,12 @@
 package com.fauzan.storytelling.ui.login
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -14,6 +14,7 @@ import com.fauzan.storytelling.R
 import com.fauzan.storytelling.data.ViewModelFactory
 import com.fauzan.storytelling.databinding.FragmentLoginBinding
 import com.fauzan.storytelling.data.Result
+import com.fauzan.storytelling.ui.MainActivity
 
 class LoginFragment : Fragment() {
 
@@ -33,14 +34,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupOnClickListeners()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            requireActivity().finish()
-        }
     }
 
     override fun onDestroyView() {
@@ -85,8 +78,8 @@ class LoginFragment : Fragment() {
                     binding.btnLogin.isEnabled = false
                 }
                 is Result.Success -> {
-                    val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                    requireView().findNavController().navigate(toHomeFragment)
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE

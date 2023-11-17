@@ -103,7 +103,11 @@ class StoryRepository private constructor(
     fun getStoriesWithLocation() = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getStories(getToken(), location = 1)
+            val response = apiService.getStories(
+                token = getToken(),
+                limit = 48,
+                location = 1
+            )
             if (response.error) {
                 emit(Result.Error(response.message))
             } else {

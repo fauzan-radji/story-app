@@ -1,5 +1,7 @@
 package com.fauzan.storytelling.ui.maps
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import androidx.fragment.app.Fragment
 import android.os.Bundle
@@ -7,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import com.fauzan.storytelling.R
 import com.fauzan.storytelling.data.ViewModelFactory
@@ -32,6 +35,7 @@ class MapsFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
         mMap = googleMap
 
+        showMyLocation()
         setMapStyle(googleMap)
     }
 
@@ -101,6 +105,24 @@ class MapsFragment : Fragment() {
             }
         } catch (e: Resources.NotFoundException) {
             Toast.makeText(requireContext(), "Error loading map style", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkPermission(callback: (isGranted: Boolean) -> Unit){
+        val isGranted = ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        callback(isGranted)
+    }
+
+    private fun showMyLocation() {
+        checkPermission { isGranted ->
+            mMap?.isMyLocationEnabled = isGranted
         }
     }
 }

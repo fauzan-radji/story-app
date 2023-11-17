@@ -3,7 +3,6 @@ package com.fauzan.storytelling.ui.add
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.OrientationEventListener
 import android.view.Surface
@@ -18,10 +17,13 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.fauzan.storytelling.R
 import com.fauzan.storytelling.databinding.FragmentCameraBinding
 import com.fauzan.storytelling.utils.createCustomTempFile
+import com.fauzan.storytelling.utils.enterFullscreen
+import com.fauzan.storytelling.utils.exitFullscreen
 
 class CameraFragment : Fragment() {
 
@@ -51,6 +53,9 @@ class CameraFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCameraBinding.inflate(layoutInflater,container,false)
+
+        enterFullscreen()
+
         return binding.root
     }
 
@@ -81,8 +86,11 @@ class CameraFragment : Fragment() {
         orientationEventListener.disable()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        exitFullscreen()
+
         _binding = null
     }
 

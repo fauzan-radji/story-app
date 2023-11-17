@@ -43,6 +43,14 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        viewModel.checkSession().observe(this) { userModel ->
+            if (userModel.token.isEmpty()) {
+                startActivity(Intent(this@MainActivity, AuthActivity::class.java))
+                finish()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
