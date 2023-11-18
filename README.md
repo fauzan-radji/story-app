@@ -1,4 +1,4 @@
-<center>
+<div align="center">
   <img src="./logo/typo.png" width="400" />
 
   <br />
@@ -6,7 +6,7 @@
   <p>
     This is a simple project to show user story from <a href="https://story-api.dicoding.dev/v1/">Dicoding Story API</a>. This application was created as a submission to the <a href="https://www.dicoding.com/academies/352/">Belajar Pengembangan Aplikasi Android Intermediate</a> course in Dicoding.
   </p>
-</center>
+</div>
 
 ## Preview
 
